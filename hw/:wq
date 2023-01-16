@@ -1,0 +1,28 @@
+/* Zachary Liu
+ * COMP 211
+ * HW3 a
+ * */
+#include <stdio.h>
+#include <string.h>
+
+void encrypt(char str[], char encryptedStr[], int shift){
+    for( int i = 0; i < (strlen(str)-1); i++){
+        encryptedStr[i] = str[i] + (shift % 94);
+        if (encryptedStr[i] > 126){
+            encryptedStr[i] = encryptedStr[i] - 95;
+        }
+    }
+}
+
+int main(void){
+    char input [256];
+    int key;
+    char output[256];
+    printf("Enter a string to encrypt: ");
+    fgets(&input[0], 256, stdin);
+    printf("Enter the shift amount for Caesar cipher: ");
+    scanf("%d", &key);
+    encrypt(input, output, key);
+    printf("Ciphertext is %s\n", output);
+}
+
